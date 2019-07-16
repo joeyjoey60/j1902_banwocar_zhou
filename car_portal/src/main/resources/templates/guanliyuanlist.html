@@ -1,0 +1,146 @@
+<div>
+    <!--<h2>商品列表</h2>-->
+    <table id="dg" class="easyui-datagrid"
+           data-options="url:'/au/list',toolbar:'#tb',fitColumns:true,pagination:true">
+        <thead>
+        <tr>
+            <th data-options="field:'ch',checkbox:true,width:100"></th>
+            <th data-options="field:'id',width:50,formatter:formatXh">序号</th>
+            <th data-options="field:'name',width:50">管理员姓名</th>
+            <th data-options="field:'username',width:50">登录账户</th>
+            <th data-options="field:'isSuper',width:50,formatter:formatJs">角色</th>
+            <th data-options="field:'_operate',width:80,align:'center',formatter:formatOper">操作</th>
+
+        </tr>
+        </thead>
+    </table>
+    <div id="tb">
+        <input name="title" type="text"/>
+        <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true,onClick:query">查询</a>
+        <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true,onClick:add">添加</a>
+        <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-cancel',plain:true,onClick:batchDelete">批量删除</a>
+
+
+    </div>
+
+</div>
+<script>
+    function formatOper(val,row,index){
+        return '<a href="#" onclick="editUser('+index+')">编辑</a>&nbsp; &nbsp;&nbsp;&nbsp;<a href="#" onclick="deltUser('+index+')">删除</a>';
+    }
+    function deltUser(index){
+        $('#dg').datagrid('selectRow',index);// 关键在这里
+        var row = $('#dg').datagrid('getSelected');
+        console.log(row);
+        alert(row.id);
+
+        $.ajax({
+            url:"/au/delete",
+            type:"post",
+            data:'id='+row.id,
+            success:function (data) {
+                alert(data.message);
+              /*  $("#tabs").tabs('close', '管理员列表');
+                 $(".tree-title:contains('管理员列表')").parent().click();//触发树形型节点的click事件*/
+                $('#dg').datagrid('load',{
+
+                });
+            }
+
+        })
+    }
+    function editUser(index){
+        $('#dg').datagrid('selectRow',index);// 关键在这里
+        var row = $('#dg').datagrid('getSelected');
+        console.log(row);
+        alert(row.id);
+      // location.href="/au/showedit?id="+row.id;
+        $('#tabs').tabs('add', {
+            title: "编辑管理员", // 设置tab标题
+            selected: true, //获得焦点
+            closable: true, //带关闭按钮
+            href: "/au/showedit?id="+row.id
+
+
+        });
+    }
+    function formatXh(v,r,i) {
+        return i+1;
+
+    }
+
+    function formatJs(v) {
+
+        if(v==1){
+            return "超级管理员";
+        }
+        else {
+            return "普通管理员";
+        }
+
+    }
+
+
+
+
+    function query() {
+
+        $('#dg').datagrid('load',{
+            username: $("[name='title']").val()
+
+            /*title2: $("input[name='title']").val()*/
+        });
+
+
+
+
+    }
+
+    function add() {
+        // alert("add");
+        $(".tree-title:contains('新增管理员')").parent().click();//触发树形型节点的click事件
+    }
+
+    function batchDelete() {
+        // alert("dddd");
+        //获取已选择的行集合
+        var arr=$("#dg").datagrid("getSelections");
+       // alert(arr);
+        var arrids=[];
+        var ids;
+        //获得每行的id值
+        if(arr.length>0) {//数组非空
+            console.log(arr[0]);
+            //遍历数组
+            $.each(arr, function (i, v) {
+                arrids.push(v.id)
+
+            });
+            ids = arrids.join(",");//将id的数组转化为以，分割的字符串
+            console.log(ids);
+
+
+            //发出请求 并传递行id字符串
+            $.ajax({
+                url:'au/deletebatch',
+                type:'post',
+                data: "ids="+ids,
+                success:function (data) {
+                    if(data>=0) {
+                        alert("删除成功");
+                        query();
+                    }else {
+                        alert("删除失败");
+                    }
+
+                }
+            })
+        }
+        else {
+            $.messager.alert('警告',"请选择删除的行！");
+        }
+
+    }
+
+
+</script>

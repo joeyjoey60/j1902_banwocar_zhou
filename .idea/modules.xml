@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/car_common/car_common.iml" filepath="$PROJECT_DIR$/car_common/car_common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/car_pojo/car_pojo.iml" filepath="$PROJECT_DIR$/car_pojo/car_pojo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/car_portal/car_portal.iml" filepath="$PROJECT_DIR$/car_portal/car_portal.iml" />
+      <module fileurl="file://$PROJECT_DIR$/car_portal2/car_portal2.iml" filepath="$PROJECT_DIR$/car_portal2/car_portal2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/car_provider1/car_provider1.iml" filepath="$PROJECT_DIR$/car_provider1/car_provider1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/car_provider2/car_provider2.iml" filepath="$PROJECT_DIR$/car_provider2/car_provider2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/car_provider3/car_provider3.iml" filepath="$PROJECT_DIR$/car_provider3/car_provider3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/car_provider4/car_provider4.iml" filepath="$PROJECT_DIR$/car_provider4/car_provider4.iml" />
+      <module fileurl="file://$PROJECT_DIR$/car_server/car_server.iml" filepath="$PROJECT_DIR$/car_server/car_server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/j1902_banwocar_zhou.iml" filepath="$PROJECT_DIR$/j1902_banwocar_zhou.iml" />
+    </modules>
+  </component>
+</project>

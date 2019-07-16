@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+<div style="width: 300px;height: 400px;margin-left: 500px;margin-top: 200px">
+    <form style="width: 450px;height: 150px">
+        <div style="margin-top: 15px">
+       用户名<input name="username" type="text" id="iuname" style="margin-left: 30px"/><br/></div>
+        <div style="margin-top: 15px">密&nbsp;&nbsp;&nbsp;&nbsp;码<input name="password" id="ipwd" type="text"  style="margin-left: 30px" /><br/></div>
+      <div style="margin-top: 15px">  验证码<input type="text" name = "verifycode"  size="10px" id="ivc" style="margin-left: 30px" />
+        <img id="imgCode" src="/getImage" width="100" height="30"  />
+        <a href="javaScript:changeCode();" style="font-size: medium">看不清，再来一张</a></div>
+    </form>
+    <button id="btn_log" style="margin-left: 50px">登录</button>
+    <button id="btn_re" style="margin-left: 70px">重置</button>
+</div>
+    <script src="jquery/jquery-2.1.1.min.js"></script>
+    <script src="js/my/htlog.js"></script>
+    <script>
+        function changeCode(){
+            var getTimestamp=new Date().getTime();
+
+            $("#imgCode").attr("src","/getImage?timestamp="+getTimestamp);
+
+        }
+    </script>
+</body>
+</html>

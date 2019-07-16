@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="UTF-8" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+
+<div>
+    <!--<h2>商品列表</h2>-->
+    <table id="dg" class="easyui-datagrid"
+           data-options="url:'/olt/lists',toolbar:'#tb',fitColumns:true,firstLoad:true">
+        <thead>
+        <tr>
+            <th data-options="field:'ch',checkbox:true,width:100"></th>
+            <th data-options="field:'id',width:50,formatter:formatXh">序号</th>
+            <th data-options="field:'uname',width:50">操作人员</th>
+            <th data-options="field:'optime',width:50,formatter:formtCzsj">操作时间</th>
+            <th data-options="field:'tablename',width:50">操作ip</th>
+        </tr>
+        </thead>
+    </table>
+    <div id="tb">
+        <input name="title" type="text"/>
+        <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true,onClick:query">查询</a>
+        <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true,onClick:add">添加</a>
+        <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-cancel',plain:true,onClick:batchDelete">批量删除</a>
+
+
+    </div>
+
+</div>
+<script>
+
+
+    function formatXh(v,r,i) {
+        return i+1;
+
+    }
+    function formtCzsj(v) {
+        return moment(v).format('YYYY年MM月DD日 HH时mm分ss秒');
+
+
+
+    }
+
+
+    function query() {
+
+        $('#dg').datagrid('load', {
+            username: $("[name='title']").val()
+
+            /*title2: $("input[name='title']").val()*/
+        });
+    }
+
+
+
+
+    </script>
+
+
+
+    </body>
+</html>

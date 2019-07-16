@@ -1,0 +1,63 @@
+<div>
+    <!--<h2>商品列表</h2>-->
+    <table id="dg" class="easyui-datagrid"
+           data-options="url:'/olt/listpage',toolbar:'#tb1',fitColumns:true,pagination:true">
+        <thead>
+        <tr>
+            <th data-options="field:'ch',checkbox:true,width:100"></th>
+            <th data-options="field:'id',width:50,formatter:formatXh">序号</th>
+            <th data-options="field:'uname',width:50">操作人员</th>
+            <th data-options="field:'optime',width:50,formatter:formtCzsj">操作时间</th>
+            <th data-options="field:'tableName',width:50">操作ip</th>
+            <th data-options="field:'operateDesc',width:50">描述</th>
+
+        </tr>
+        </thead>
+    </table>
+    <div id="tb1">
+        <input name="title" type="text"/>
+        <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true,onClick:query">查询</a>
+        <input name="time1" class="easyui-datetimespinner" style="width:300px" data-options="showSeconds:true"/>
+        -
+        <input name="time2" class="easyui-datetimespinner" style="width:300px" data-options="showSeconds:true"/>
+
+
+
+    </div>
+
+</div>
+<script>
+
+    function formatXh(v,r,i) {
+        return i+1;
+
+    }
+
+
+    function formtCzsj(v) {
+        return moment(v).format('YYYY年MM月DD日 HH时mm分ss秒');
+
+
+
+    }
+
+
+
+    function query() {
+
+        $('#dg').datagrid('load',{
+            title: $("[name='title']").val(),
+            time1: $("[name='time1']").val(),
+            time2:$("[name='time2']").val()
+            /*title2: $("input[name='title']").val()*/
+        });
+
+
+
+
+    }
+
+
+
+
+</script>

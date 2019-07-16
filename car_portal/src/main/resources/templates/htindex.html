@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="UTF-8" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+
+    <!--引入easyui样式-->
+    <link rel="stylesheet" href="../js/jquery-easyui-1.5/themes/gray/easyui.css"></link>
+    <!--icon图标-->
+    <link rel="stylesheet" href="../js/jquery-easyui-1.5/themes/icon.css">
+    </link>
+    <style>
+        #div1{
+            margin-left: 100px;
+            margin-top: 10px;
+            width: 400px;
+            height:500px;
+            background-color: #9cc8f7;
+            padding-left: 40px;
+
+        }
+        input,textarea,button,select{
+            margin-top: 15px;
+        }
+    </style>
+
+</head>
+<body class="easyui-layout">
+
+
+<div data-options="region:'north',split:true" style="height:80px;">
+    <h2 style="color:#0099FF;font-size:larger;">"伴我汽车"管理平台</h2>
+    <label style="margin-left: 500px">时间:</label><label id="show_time0" ></label>
+
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;用户:<label  th:text="${session.uname}"> </label>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;所属角色:<label  th:text="${session.issuper}"> </label>
+
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="/logout" style="margin-right: 50px">退出</a>
+    <a href="one">one</a>
+    <a href="two">two1</a>
+    <a href="/test/two">two2</a>
+
+</div>
+<div data-options="region:'south',split:true" style="height:10px;"></div>
+<!--   <div data-options="region:'east',iconCls:'icon-reload',title:'East',split:true" style="width:100px;"></div>-->
+<div data-options="region:'west',title:'控制面板',split:true" style="width:200px;">
+    <div id="aa" class="easyui-accordion" data-options="fit:true">
+        <div title="会员管理" data-options="iconCls:'icon-save'" style="overflow:auto;padding:10px;">
+            <ul id="tt1" class="easyui-tree">
+                <!--自定义tree 属性-->
+                <li data-options="attributes:{'url':'one'}">
+                    <span>会员管理</span>
+                </li>
+
+            </ul>
+        </div>
+
+        <div title="资讯管理" data-options="iconCls:'icon-save'" style="overflow:auto;padding:10px;">
+            <ul id="t21" class="easyui-tree">
+                <!--自定义tree 属性-->
+                <li data-options="attributes:{'url':'one'}">
+                    <span>草稿箱</span>
+                </li>
+                <li data-options="attributes:{'url':'one'}">
+                    <span>资讯审核</span>
+                </li>
+                <li data-options="attributes:{'url':'one'}">
+                    <span>资讯发布</span>
+                </li>
+                <li data-options="attributes:{'url':'one'}">
+                    <span>资讯列表</span>
+                </li>
+            </ul>
+        </div>
+
+        <div title="标签定义" data-options="iconCls:'icon-save'" style="overflow:auto;padding:10px;">
+            <ul id="t31" class="easyui-tree">
+                <!--自定义tree 属性-->
+                <li data-options="attributes:{'url':'one'}">
+                    <span>标签定义</span>
+                </li>
+
+            </ul>
+        </div>
+        <div title="车型库管理" data-options="iconCls:'icon-save'" style="overflow:auto;padding:10px;">
+            <ul id="t41" class="easyui-tree">
+                <!--自定义tree 属性-->
+                <li data-options="attributes:{'url':'one'}">
+                    <span>品牌管理</span>
+                </li>
+                <li data-options="attributes:{'url':'one'}">
+                    <span>厂商管理</span>
+                </li>
+                <li data-options="attributes:{'url':'one'}">
+                    <span>车系管理</span>
+                </li>
+                <li data-options="attributes:{'url':'one'}">
+                    <span>车款管理</span>
+                </li>
+                <li data-options="attributes:{'url':'one'}">
+                    <span>参数分类管理</span>
+                </li>
+                <li data-options="attributes:{'url':'one'}">
+                    <span>参数管理</span>
+                </li>
+
+
+            </ul>
+        </div>
+        <div title="自有商品管理" data-options="iconCls:'icon-save'" style="overflow:auto;padding:10px;">
+            <ul id="t51" class="easyui-tree">
+                <!--自定义tree 属性-->
+                <li data-options="attributes:{'url':'one'}">
+                    <span>自有商品管理</span>
+                </li>
+
+            </ul>
+        </div>
+        <div title="活动管理" data-options="iconCls:'icon-save'" style="overflow:auto;padding:10px;">
+            <ul id="t61" class="easyui-tree">
+                <!--自定义tree 属性-->
+                <li data-options="attributes:{'url':'one'}">
+                    <span>活动列表</span>
+                </li>
+                <li data-options="attributes:{'url':'one'}">
+                    <span>推荐活动</span>
+                </li>
+                <li data-options="attributes:{'url':'one'}">
+                    <span>类型管理</span>
+                </li>
+                <li data-options="attributes:{'url':'one'}">
+                    <span>渠道管理</span>
+                </li>
+
+
+            </ul>
+        </div>
+        <div title="消息管理" data-options="iconCls:'icon-save'" style="overflow:auto;padding:10px;">
+            <ul id="t71" class="easyui-tree">
+                <!--自定义tree 属性-->
+                <li data-options="attributes:{'url':'one'}">
+                    <span>消息管理</span>
+                </li>
+
+            </ul>
+        </div>
+        <div title="标签管理" data-options="iconCls:'icon-save'" style="overflow:auto;padding:10px;">
+            <ul id="t81" class="easyui-tree">
+                <!--自定义tree 属性-->
+                <li data-options="attributes:{'url':'one'}">
+                    <span>标签管理</span>
+                </li>
+
+            </ul>
+        </div>
+        <div title="角色管理" data-options="iconCls:'icon-save'" style="overflow:auto;padding:10px;">
+            <ul id="t91" class="easyui-tree">
+                <!--自定义tree 属性-->
+                <li data-options="attributes:{'url':'one'}">
+                    <span>角色管理</span>
+                </li>
+
+            </ul>
+        </div>
+        <div title="管理员列表" data-options="iconCls:'icon-save'" style="overflow:auto;padding:10px;">
+            <ul id="t12" class="easyui-tree">
+                <!--自定义tree 属性-->
+                <li data-options="attributes:{'url':'guanliyuanlist'}">
+                    <span>管理员列表</span>
+                </li>
+                <li data-options="attributes:{'url':'/showrole'}">
+                    <span>新增管理员</span>
+                </li>
+
+
+
+            </ul>
+        </div>
+        <div title="操作日志" data-options="iconCls:'icon-save'" style="overflow:auto;padding:10px;">
+            <ul id="t13" class="easyui-tree">
+                <!--自定义tree 属性-->
+                <li data-options="attributes:{'url':'caozuorizhilist'}">
+                    <span>操作日志</span>
+                </li>
+              <!--  <li data-options="attributes:{'url':'caozuorizhi'}">
+                    <span>操作日志</span>
+                </li>-->
+
+            </ul>
+        </div>
+        <div title="个人中心" data-options="iconCls:'icon-save'" style="overflow:auto;padding:10px;">
+            <ul id="t14" class="easyui-tree">
+                <!--自定义tree 属性-->
+                <li data-options="attributes:{'url':'one'}">
+                    <span>个人中心</span>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+
+
+
+</div>
+<div data-options="region:'center'" style="padding:5px;background:#eee;">
+    <div id="tabs" class="easyui-tabs" data-options="fit:true">
+        <!--<div title="Tab1" style="padding:20px;display:none;">
+            tab1
+        </div>
+        <div title="Tab2" data-options="closable:true" style="overflow:auto;padding:20px;display:none;">
+            tab2
+        </div>-->
+
+    </div>
+
+
+</div>
+
+
+<!--引入jquery类库-->
+<script src="../js/jquery-easyui-1.5/jquery.min.js"></script>
+<!--easyui类库 -->
+<script src="../js/jquery-easyui-1.5/jquery.easyui.min.js"></script>
+<!--引入easyui使用的字符集-->
+<script src="../js/jquery-easyui-1.5/locale/easyui-lang-zh_CN.js"></script>
+<!--引入moment插件 专门用于时间数据类型转换-->
+<script src="../js/moment/moment.min.js"></script>
+<script src="../js/moment/moment-with-locales.js"></script>
+<script>
+    setInterval("show_time0.innerHTML=new Date().toLocaleString()+' 星期'+'日一二三四五六'.charAt(new Date().getDay());",1000);
+</script>
+<script>
+    $('#tt1,#t21,#t31,#t41,#t51,#t61,#t71,#t81,#t91,#t13,#t12,#t14').tree({
+        onClick: function (node) {
+           // alert(node.text);  // 在用户点击的时候提示
+            //  console.log(node)
+            var tab = $("#tabs").tabs("getTab", node.text);
+            if (!tab) {//选项卡不存在
+                $('#tabs').tabs('add', {
+                    title: node.text, // 设置tab标题
+                    selected: true, //获得焦点
+                    closable: true, //带关闭按钮
+                    href: node.attributes.url   //设定选项卡请求的资源地址
+
+                    //...
+                });
+            } else {
+                //选项卡已存在
+                $("#tabs").tabs("select", node.text);//存在 获取焦点  方法名 参数
+            }
+        }
+    });
+
+    $("#aa").accordion({fit:true,selected:-1});
+</script>
+</body>
+</html>

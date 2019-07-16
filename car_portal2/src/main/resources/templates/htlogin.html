@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+    <form action="/user/login" method="post" style="width: 300px;height: 400px;margin-left: 500px;margin-top: 300px">
+       用户名<input name="username" type="text"/><br/>
+        密码&nbsp;&nbsp;<input name="password" type="text"/><br/>
+        验证码:<input type="text" name = "verifyCode"  size="10px"/>
+        <img id="imgCode" src="/getImage" width="125" height="40"/>
+        <a href="javaScript:changeCode();">看不清，再来一张</a>
+
+        <br/>
+        <input  type="submit" value="登录" />
+    </form>
+
+    <script src="jquery/jquery-2.1.1.min.js"></script>
+    <script>
+        function changeCode(){
+            var getTimestamp=new Date().getTime();
+
+            $("#imgCode").attr("src","/getImage?timestamp="+getTimestamp);
+
+        }
+    </script>
+</body>
+</html>

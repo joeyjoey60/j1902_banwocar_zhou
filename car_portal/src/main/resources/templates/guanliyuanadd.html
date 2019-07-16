@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+
+</head>
+<body>
+<div id="div1">
+
+<h2>新增管理员</h2>
+用户名&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="iuname" /><br/>
+密码&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="ipwd" /><br/>
+密码确认<input type="text" id="irpw" /> <span id="sppw" style="width: 50px;height: 44px;color: red"></span><br/>
+所属角色<select name="sis_super">
+    <option value="0">普通管理员</option>
+    <option value="1">超级管理员</option>
+</select>
+    <br/>
+姓名&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="iname" /><br/>
+所属部门<!--<select name="status" th:field="*{status}" id="idstatus" class="input-select" th:value="*{status}">
+    <option value="">&#45;&#45;请选择&#45;&#45;</option>
+    <option th:each="cts,userStat:${inqList}" th:value="${cts.key}" th:text="${cts.value}"></option>
+
+</select>-->
+    <select name="srole" th:remove="all-but-first">
+        <option th:each="role : ${roles}"
+                th:value="${role.name}" th:text="${role.name}">Credit card</option>
+
+    </select>
+    <br/>
+手机&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="ishj" /> <span id="spsj" style="width: 50px;height: 44px;color: green"></span><br/>
+邮箱&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="iyx" /><span id="spem" style="width: 50px;height: 44px;color: blue"></span><br/>
+备注&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<textarea id="ibz"></textarea><br/>
+    <button id="btn_adduser">添加</button>
+    <button id="btn_re">重置</button>
+</div>
+<script>
+    $("#btn_adduser").click(function () {
+      //  alert("dddddddd");
+        var dept = $("select[name='srole']").val();
+        var is_Super=$("select[name='sis_super']").val();
+      //  alert(dept+is_Super);
+        var username = $("#iuname").val();
+        var password = $("#ipwd").val();
+        var name = $("#iname").val();
+        var phone = $("#ishj").val();
+        var email = $("#iyx").val();
+        var remark = $("#ibz").val();
+        var irpw=$("#irpw").val();
+        var sppw=$("#sppw");
+        var spem=$("#spem");
+        var spsj=$("#spsj");
+
+
+        if(irpw!=password){
+           // alert("两次输入密码不一致，请重新输入")
+            sppw.html("两次输入密码不一致，请重新输入");
+        }
+        else {
+            if(!phone.match(/^(13[0-9]|14[5-9]|15[012356789]|166|17[0-8]|18[0-9]|19[8-9])[0-9]{8}$/)) {
+
+                spsj.html("手机号码格式有误");
+
+            }
+            else {
+
+
+                if (!email.match(/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$/)) {
+
+                    spem.html("请输入正确的邮箱格式，格式为 xxx@xxx.com");
+
+                }
+                else {
+
+                    var args = {
+                        "username": username,
+                        "password": password,
+                        "name": name,
+                        "email": email,
+                        "remark": remark,
+                        "dept": dept,
+                        "is_Super": is_Super
+                    };
+                    $.ajax({
+                        url: "/au/add",
+                        data: args,
+                        type: "post",
+                        success: function (data) {
+                            if (data == 1) {
+                                alert("添加成功");
+                                $("#tabs").tabs('close', '新增管理员');
+                                $("#tabs").tabs('close', '管理员列表');
+                                $(".tree-title:contains('管理员列表')").parent().click();//触发树形型节点的click事件
+
+                            } else if (data == 3) {
+                                alert("用户名已存在，请重新输入");
+                              /*  $("#tabs").tabs('close', '新增管理员');
+                                $(".tree-title:contains('新增管理员')").parent().click();//触发树形型节点的click事件*/
+                                //var tab = $("#tabs").tabs("getTab", node.text);
+                            }
+                            else {
+                                alert("添加失败,请重新添加");
+
+                            }
+                        }
+                    });
+
+
+                }
+
+            }
+
+
+            // alert(username+password+name+password+email+remark);
+
+        }
+
+
+    });
+
+</script>
+</body>
+</html>
